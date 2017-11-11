@@ -6,5 +6,6 @@ import javax.persistence.Entity;
 
 import bike_mechanics.persistence.base_entities.BikeComponent;
 
+@Entity
 public class Cassette extends BikeComponent implements Serializable {
 }

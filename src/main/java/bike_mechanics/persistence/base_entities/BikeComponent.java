@@ -4,11 +4,13 @@ import bike_mechanics.persistence.enums.ReplacementStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-public class BikeComponent implements Serializable {
+@Inheritance
+public abstract class BikeComponent implements Serializable {
 
     @Id
     long id;
