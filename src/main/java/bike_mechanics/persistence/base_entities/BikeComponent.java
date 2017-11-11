@@ -1,6 +1,6 @@
 package bike_mechanics.persistence.base_entities;
 
-import bike_mechanics.persistence.enums.ReplaceStatus;
+import bike_mechanics.persistence.enums.ReplacementStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,5 +14,5 @@ public class BikeComponent implements Serializable {
     int id;
     float milage;
     Date assemblyDate;
-    ReplaceStatus status;
+    ReplacementStatus status;
 }
