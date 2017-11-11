@@ -1,0 +1,53 @@
+BikeComponent
+---
+- Chain
+- Cassette
+- ChainRing
+- BowdenCable
+- WheelBearing
+- CrankBearing
+- Tires
+
+Attributes
+----------
+float milage
+DateTime assemblyDate
+ReplaceStatus status
+List<MaintenanceNotification> notifications
+
+User
+---
+String stravaUserId
+String email (Kann Optional sein)
+List<Bike> bikes
+
+Bike
+---
+String stravaGearId
+String stravaName
+List<Cassette> cassettes
+List<Chain> chains
+
+
+MaintenanceNotification
+---------
+String msg (example: You should replace the part)
+DateTime date
+
+ReplacementWarning(erbt von MaintenanceNotification)
+
+
+
+---------------------
+ReplaceStatus
+- IN_USE
+- SHOULD_BE_REPLACED
+- MUST_BE_REPLACED
+- DISASSEMBLED
+
+
+
+
+Features 2.0
+------
+Ein und wieder ausbauen von bestimmten Bauteilen
