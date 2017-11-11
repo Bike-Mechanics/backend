@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
-public class HelloWorld {
+public class Application {
     @RequestMapping(value="/{factor}", method = RequestMethod.GET)
     String home(@PathVariable("factor") int factor){
 
@@ -15,6 +15,6 @@ public class HelloWorld {
     }
 
     public static void main(String[] args) throws Exception{
-        SpringApplication.run(HelloWorld.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
