@@ -1,4 +1,4 @@
-package bike_mechanics.persistence;
+package bike_mechanics.persistence.enums;
 
 public enum ReplaceStatus {
     IN_USE,

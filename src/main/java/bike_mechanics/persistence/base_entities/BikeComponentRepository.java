@@ -1,5 +1,6 @@
-package bike_mechanics.persistence;
+package bike_mechanics.persistence.base_entities;
 
+import bike_mechanics.persistence.base_entities.BikeComponent;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
