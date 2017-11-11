@@ -11,7 +11,7 @@ import java.sql.Date;
 public class BikeComponent implements Serializable {
 
     @Id
-    int id;
+    long id;
     float milage;
     Date assemblyDate;
     ReplacementStatus status;
