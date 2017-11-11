@@ -1,7 +1,6 @@
-package persistence;
+package bike_mechanics.persistence;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -9,8 +8,5 @@ import java.io.Serializable;
 public class BikeComponent implements Serializable {
 
     @Id
-    @GeneratedValue
     int id;
-
-    String name;
 }

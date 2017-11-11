@@ -1,4 +1,4 @@
-package persistence;
+package bike_mechanics.persistence;
 
 import org.springframework.data.repository.CrudRepository;
 
