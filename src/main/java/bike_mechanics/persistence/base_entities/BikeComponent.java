@@ -5,7 +5,7 @@ import bike_mechanics.persistence.enums.ReplacementStatus;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class BikeComponent implements Serializable {
