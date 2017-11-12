@@ -16,7 +16,7 @@ backend.iml
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
-
+bike_mechanics_backend.iml
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
@@ -49,3 +49,8 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+/target/
+/application.properties
+/.classpath
+/.project
+/.settings/
