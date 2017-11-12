@@ -1,8 +1,8 @@
 package bike_mechanics.persistence.base_entities;
 
 
-import javax.persistence.Id;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
