@@ -1,4 +1,4 @@
-package bike_mechanics.persistence.entities;
+package de.bike_mechanics.persistence.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 

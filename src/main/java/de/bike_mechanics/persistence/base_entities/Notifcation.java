@@ -1,4 +1,4 @@
-package bike_mechanics.persistence.base_entities;
+package de.bike_mechanics.persistence.base_entities;
 
 
 import javax.persistence.Entity;

@@ -1,14 +1,12 @@
-package bike_mechanics.view;
+package de.bike_mechanics.view;
 
-import bike_mechanics.persistence.entities.Bike;
-import bike_mechanics.persistence.entities.Chain;
-import bike_mechanics.persistence.repositories.BikeRepository;
-import bike_mechanics.persistence.repositories.ChainRepository;
-import bike_mechanics.service.StravaAPIController;
+import de.bike_mechanics.persistence.entities.Bike;
+import de.bike_mechanics.persistence.entities.Chain;
+import de.bike_mechanics.persistence.repositories.BikeRepository;
+import de.bike_mechanics.persistence.repositories.ChainRepository;
+import de.bike_mechanics.service.StravaAPIController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -42,9 +40,10 @@ public class BikeChainController {
         return "I got " + bikes.size() + " bike(s) saved.";
     }
 
-    @RequestMapping(value = "/activity", method = RequestMethod.GET)
-    public String activity(){
-        float activityDistance = this.stravaAPIController.getDistanceFromSampleActivity();
+
+    @RequestMapping(value = "/activity/{activityId}", method = RequestMethod.GET)
+    public String activity(@PathVariable(value="activityId") int activityId){
+        float activityDistance = this.stravaAPIController.getDistanceFromSampleActivity(activityId);
 
         return "The distance of your activity was " + activityDistance + " kilometers. Well done!";
     }

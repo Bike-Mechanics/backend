@@ -1,6 +1,6 @@
-package bike_mechanics.persistence.repositories;
+package de.bike_mechanics.persistence.repositories;
 
-import bike_mechanics.persistence.entities.Bike;
+import de.bike_mechanics.persistence.entities.Bike;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package bike_mechanics.persistence.base_entities;
+package de.bike_mechanics.persistence.base_entities;
 
-import bike_mechanics.persistence.enums.ReplacementStatus;
+import de.bike_mechanics.persistence.enums.ReplacementStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
