@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class StravaAPIController {
 
     @Value(value = "${strava.access_token}")
-    private String ACCESS_TOKEN = "2615b9c15f920dc937e76c3d8116216c52f54f44";
+    private String ACCESS_TOKEN;
 
     @Value(value = "${strava.client_secret}")
     private String CLIENT_SECRET;
