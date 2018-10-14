@@ -40,3 +40,9 @@ jobs:
       # run tests!
       - run: mvn integration-test
 
+    deployment:
+      staging:
+        branch: master
+        heroku:
+          appname: bike-mechanics-backend
+
