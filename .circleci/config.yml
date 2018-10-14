@@ -39,6 +39,7 @@ jobs:
 
       # run tests!
       - run: mvn integration-test
+      - run: mvn package
 
     deployment:
       staging:
