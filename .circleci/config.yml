@@ -41,9 +41,9 @@ jobs:
       - run: mvn integration-test
       - run: mvn package
 
-    deployment:
-      staging:
-        branch: master
-        heroku:
-          appname: bike-mechanics-backend
+  deployment:
+    staging:
+      branch: master
+      heroku:
+        appname: bike-mechanics-backend
 
