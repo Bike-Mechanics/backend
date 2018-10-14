@@ -6,7 +6,7 @@
 
     <groupId>bike_mechanics</groupId>
     <artifactId>bike_mechanics_backend</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>2018.10.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -48,8 +48,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>test</scope>
-            <version>1.4.194</version>
         </dependency>
     </dependencies>
     <repositories>

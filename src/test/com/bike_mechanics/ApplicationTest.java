@@ -1,4 +1,4 @@
-package bike_mechanics;
+package com.bike_mechanics;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
