@@ -7,7 +7,6 @@ import javastrava.api.v3.model.StravaActivity;
 import javastrava.api.v3.service.Strava;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -17,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class StravaAuthorizedService {
 
-    private Strava stravaApi;
+    private final Strava stravaApi;
 
     public StravaAuthorizedService(@Value("${strava.client_id}") int clientId,
                                    @Value("${strava.client_secret}") String clientSecret,

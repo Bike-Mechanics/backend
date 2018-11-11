@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 @Entity
@@ -14,7 +15,9 @@ import java.time.ZonedDateTime;
 @Builder
 @Setter
 @Table(uniqueConstraints = @UniqueConstraint(name = "Strava ID must be unique", columnNames = {"stravaId"}))
-public class Activity{
+public class Activity implements Serializable {
+
+    private static final long serialVersionUID = -1002508975028988425L;
 
     @Id
     @GeneratedValue

@@ -15,9 +15,9 @@ import java.util.List;
 @PropertySource(value={"classpath:application.properties"})
 public class ApiService {
 
-    private StravaAuthorizedService stravaAuthorizedService;
+    private final StravaAuthorizedService stravaAuthorizedService;
 
-    private ActivityRepository activityRepository;
+    private final ActivityRepository activityRepository;
 
     @Autowired
     public ApiService(StravaAuthorizedService stravaAuthorizedService, ActivityRepository activityRepository){
