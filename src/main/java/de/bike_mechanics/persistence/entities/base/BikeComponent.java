@@ -1,6 +1,6 @@
-package de.bike_mechanics.persistence.base_entities;
+package de.bike_mechanics.persistence.entities.base;
 
-import de.bike_mechanics.persistence.enums.ReplacementStatus;
+import de.bike_mechanics.domain.enums.ReplacementStatus;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -14,12 +14,16 @@ import java.time.ZonedDateTime;
 @Inheritance
 public abstract class BikeComponent implements Serializable {
 
+    private static final long serialVersionUID = -2696919732054181366L;
+
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     long id;
 
     float distance;
+
     ZonedDateTime assemblyDate;
+
     ReplacementStatus status;
 }
