@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.ZonedDateTime;
 
 @Entity
 @Inheritance
@@ -19,7 +19,7 @@ public abstract class BikeComponent implements Serializable {
     @GenericGenerator(name="increment", strategy = "increment")
     long id;
 
-    float milage;
-    Date assemblyDate;
+    float distance;
+    ZonedDateTime assemblyDate;
     ReplacementStatus status;
 }
