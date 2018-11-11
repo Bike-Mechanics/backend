@@ -6,20 +6,21 @@ import javastrava.api.v3.model.StravaActivity;
 import javastrava.api.v3.model.reference.StravaActivityType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Component
-public class APIService {
+@Service
+@PropertySource(value={"classpath:application.properties"})
+public class ApiService {
 
-    private StravaAuthorizedService stravaAuthorizedService;
+    private final StravaAuthorizedService stravaAuthorizedService;
 
-    private ActivityRepository activityRepository;
+    private final ActivityRepository activityRepository;
 
     @Autowired
-    public APIService(StravaAuthorizedService stravaAuthorizedService, ActivityRepository activityRepository){
+    public ApiService(StravaAuthorizedService stravaAuthorizedService, ActivityRepository activityRepository){
         this.activityRepository = activityRepository;
         this.stravaAuthorizedService = stravaAuthorizedService;
         this.synchActivities(2018);
