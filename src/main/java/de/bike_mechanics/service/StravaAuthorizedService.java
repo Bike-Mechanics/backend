@@ -7,6 +7,7 @@ import javastrava.api.v3.model.StravaActivity;
 import javastrava.api.v3.service.Strava;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -16,14 +17,14 @@ import java.util.List;
 @Slf4j
 public class StravaAuthorizedService {
 
-    private Strava stravaAPI;
+    private Strava stravaApi;
 
     public StravaAuthorizedService(@Value("${strava.client_id}") int clientId,
                                    @Value("${strava.client_secret}") String clientSecret,
                                    @Value("${strava.authorization_code}") String code) {
 
         Token authorizationToken = this.authorizeForStravaAPI(clientId, clientSecret, code);
-        this.stravaAPI = new Strava(authorizationToken);
+        this.stravaApi = new Strava(authorizationToken);
     }
 
 
@@ -34,11 +35,11 @@ public class StravaAuthorizedService {
     }
 
     StravaActivity getActivity(int activityId){
-        return this.stravaAPI.getActivity(activityId);
+        return this.stravaApi.getActivity(activityId);
     }
 
     List<StravaActivity> listAuthenticatedAthleteActivities(LocalDateTime before, LocalDateTime after){
-        return this.stravaAPI.listAuthenticatedAthleteActivities(before, after);
+        return this.stravaApi.listAuthenticatedAthleteActivities(before, after);
     }
 
 
