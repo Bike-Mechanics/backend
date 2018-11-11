@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-@PropertySource(value={"classpath:application.properties"})
 public class APIService {
 
     private StravaAuthorizedService stravaAuthorizedService;
