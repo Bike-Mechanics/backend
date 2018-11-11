@@ -6,7 +6,7 @@
 
     <groupId>bike_mechanics</groupId>
     <artifactId>bike_mechanics_backend</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>2018.11.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -37,5 +37,37 @@
             <artifactId>javastrava-api</artifactId>
             <version>1.0.3</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>2.0.4.RELEASE</version>
+        </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>spring-libs-release</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+
 </project>

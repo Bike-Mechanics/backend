@@ -1,0 +1,9 @@
+language: java
+
+heroku plugins:install
+heroku-cli-deploymvn
+clean install
+# Creates an app with the specified name, without setting up a git remote
+heroku create --no-remote
+#deploys the jar file
+heroku deploy:jar target/bike_mechanics_backend.jar --app
