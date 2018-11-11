@@ -7,4 +7,5 @@ import java.io.Serializable;
 
 @Entity
 public class Chain extends BikeComponent implements Serializable {
+
 }
