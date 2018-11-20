@@ -1,11 +1,11 @@
 package de.bike_mechanics.persistence.repositories;
 
-import de.bike_mechanics.persistence.entities.Activity;
+import de.bike_mechanics.persistence.entities.Use;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ActivityRepository extends JpaRepository<Activity, Long> {
+public interface UseRepository extends JpaRepository<Use, Long> {
 
 }
 
