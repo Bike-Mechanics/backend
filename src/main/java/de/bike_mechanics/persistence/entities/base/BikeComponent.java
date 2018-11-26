@@ -1,14 +1,13 @@
 package de.bike_mechanics.persistence.entities.base;
 
 import de.bike_mechanics.domain.enums.ReplacementStatus;
+import de.bike_mechanics.persistence.entities.Use;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Inheritance
@@ -21,9 +20,13 @@ public abstract class BikeComponent implements Serializable {
     @GenericGenerator(name="increment", strategy = "increment")
     long id;
 
-    float distance;
-
-    ZonedDateTime assemblyDate;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "bikeComponent", orphanRemoval = true)
+    List<Use> uses = new ArrayList<>();
 
     ReplacementStatus status;
+
+    public void addUse(Use use){
+        use.setBikeComponent(this);
+        this.uses.add(use);
+    }
 }
