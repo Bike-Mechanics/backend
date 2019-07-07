@@ -32,7 +32,7 @@ public abstract class BikeComponent implements Serializable {
         this.usages = new ArrayList<>();
     }
 
-    public void addUse(ComponentUsage use) {
+    public void addUsage(ComponentUsage use) {
         use.setBikeComponent(this);
         this.usages.add(use);
     }

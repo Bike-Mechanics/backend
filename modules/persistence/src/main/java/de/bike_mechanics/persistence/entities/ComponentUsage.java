@@ -43,6 +43,10 @@ public class ComponentUsage {
     }
 
     public void setBikeComponent(BikeComponent bikeComponent) {
+        this.bikeComponent = bikeComponent;
+    }
 
+    public void addDistance(float additionalDistance) {
+        this.distance += additionalDistance;
     }
 }

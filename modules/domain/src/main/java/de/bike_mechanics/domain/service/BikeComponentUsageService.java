@@ -1,5 +1,6 @@
 package de.bike_mechanics.domain.service;
 
+import de.bike_mechanics.domain.representation.ComponentUsageDTO;
 import de.bike_mechanics.persistence.entities.Activity;
 import de.bike_mechanics.persistence.entities.Chain;
 import de.bike_mechanics.persistence.entities.ComponentUsage;
@@ -7,11 +8,13 @@ import de.bike_mechanics.persistence.entities.Wheelset;
 import de.bike_mechanics.persistence.entities.base.BikeComponent;
 import de.bike_mechanics.persistence.repositories.ActivityRepository;
 import de.bike_mechanics.persistence.repositories.ChainRepository;
-import de.bike_mechanics.persistence.repositories.UseRepository;
+import de.bike_mechanics.persistence.repositories.UsageRepository;
 import de.bike_mechanics.persistence.repositories.WheelsetRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -25,10 +28,12 @@ public class BikeComponentUsageService {
 
     private final ChainRepository chainRepository;
 
-    private final UseRepository useRepository;
+    private final UsageRepository usageRepository;
 
-    private List<Activity> getAllActivities(){
-       return this.activityRepository.findAll();
+    private final StravaAPI stravaAPI;
+
+    private List<Activity> getAllActivities() {
+        return this.activityRepository.findAll();
     }
 
     public void createUsage(BikeComponent bikeComponent, ZonedDateTime start, ZonedDateTime end) {
@@ -37,28 +42,35 @@ public class BikeComponentUsageService {
         this.saveAndCalculateDistance(bikeComponent, newUse);
     }
 
-    public void calculateDistanceForComponent(long id){
-
-        /*
-
-        [GET] /components/15
-        {
-            "component_id": 15,
-            "componenten_name": "My Chain",
-            "km_usage": 2400
-        }
-
-        1. Create Chain entity (create new simple entity... without CRUD management)
-        2. Create Component Usage (...)
-        3. Import activities (call mocked StravaAPI with getActivities())
-        4. Recalculate component usage ()
-        5. Data interface for data return
-
-         */
-
+    public ComponentUsageDTO calculateDistanceForComponent(long id) {
         Chain chain = new Chain();
+        chain = chainRepository.save(chain);
+
+        ZonedDateTime assemblyDate = ZonedDateTime.of(2018, 1, 1, 0, 0, 0, 0, ZoneId.of("Europe/Berlin"));
+
+        ComponentUsage usage = new ComponentUsage(assemblyDate);
+        chain.addUsage(usage);
+
+        List<Activity> activities = stravaAPI.getActivities();
+        activities.forEach(activity -> {
+            this.appendDistanceIfInUse(activity, usage);
+        });
+
         chainRepository.save(chain);
 
+        return new ComponentUsageDTO(chain.getId(), usage.getDistance());
+    }
+
+    private void appendDistanceIfInUse(Activity activity, ComponentUsage usage) {
+        if (usage.getDisassemblyDate() != null) {
+            return;
+        }
+
+        if (activity.getCreatedOn().isBefore(usage.getAssemblyDate())) {
+            return;
+        }
+
+        usage.addDistance(activity.getDistance());
     }
 
     public void createUsage(BikeComponent bikeComponent, ZonedDateTime start) {
@@ -68,21 +80,21 @@ public class BikeComponentUsageService {
     }
 
 
-    private float getActiviesDistance(ComponentUsage use){
+    private float getActiviesDistance(ComponentUsage use) {
         List<Activity> activities = this.getAllActivities();
         float sumDistance = 0;
 
         ZonedDateTime start = use.getAssemblyDate();
 
         ZonedDateTime end;
-        if(use.getDisassemblyDate() == null){
+        if (use.getDisassemblyDate() == null) {
             end = ZonedDateTime.now();
-        }else{
+        } else {
             end = use.getDisassemblyDate();
         }
 
-        for (Activity activity: activities) {
-            if(activity.getCreatedOn().isAfter(start) && activity.getCreatedOn().isBefore(end)){
+        for (Activity activity : activities) {
+            if (activity.getCreatedOn().isAfter(start) && activity.getCreatedOn().isBefore(end)) {
                 sumDistance += activity.getDistance();
             }
         }
@@ -92,7 +104,7 @@ public class BikeComponentUsageService {
 
     private void saveAndCalculateDistance(BikeComponent bikeComponent, ComponentUsage newUse) {
         newUse.setDistance(this.getActiviesDistance(newUse));
-        bikeComponent.addUse(newUse);
+        bikeComponent.addUsage(newUse);
 
 
         if (bikeComponent instanceof Wheelset) {
