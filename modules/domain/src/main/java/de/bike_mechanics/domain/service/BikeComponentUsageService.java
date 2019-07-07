@@ -1,10 +1,12 @@
 package de.bike_mechanics.domain.service;
 
 import de.bike_mechanics.persistence.entities.Activity;
-import de.bike_mechanics.persistence.entities.Use;
+import de.bike_mechanics.persistence.entities.Chain;
+import de.bike_mechanics.persistence.entities.ComponentUsage;
 import de.bike_mechanics.persistence.entities.Wheelset;
 import de.bike_mechanics.persistence.entities.base.BikeComponent;
 import de.bike_mechanics.persistence.repositories.ActivityRepository;
+import de.bike_mechanics.persistence.repositories.ChainRepository;
 import de.bike_mechanics.persistence.repositories.UseRepository;
 import de.bike_mechanics.persistence.repositories.WheelsetRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,8 @@ public class BikeComponentUsageService {
 
     private final WheelsetRepository wheelsetRepository;
 
+    private final ChainRepository chainRepository;
+
     private final UseRepository useRepository;
 
     private List<Activity> getAllActivities(){
@@ -28,19 +32,43 @@ public class BikeComponentUsageService {
     }
 
     public void createUsage(BikeComponent bikeComponent, ZonedDateTime start, ZonedDateTime end) {
-        Use newUse = new Use(start, end);
+        ComponentUsage newUse = new ComponentUsage(start, end);
 
         this.saveAndCalculateDistance(bikeComponent, newUse);
+    }
+
+    public void calculateDistanceForComponent(long id){
+
+        /*
+
+        [GET] /components/15
+        {
+            "component_id": 15,
+            "componenten_name": "My Chain",
+            "km_usage": 2400
+        }
+
+        1. Create Chain entity (create new simple entity... without CRUD management)
+        2. Create Component Usage (...)
+        3. Import activities (call mocked StravaAPI with getActivities())
+        4. Recalculate component usage ()
+        5. Data interface for data return
+
+         */
+
+        Chain chain = new Chain();
+        chainRepository.save(chain);
+
     }
 
     public void createUsage(BikeComponent bikeComponent, ZonedDateTime start) {
-        Use newUse = new Use(start);
+        ComponentUsage newUse = new ComponentUsage(start);
 
         this.saveAndCalculateDistance(bikeComponent, newUse);
     }
 
 
-    private float getActiviesDistance(Use use){
+    private float getActiviesDistance(ComponentUsage use){
         List<Activity> activities = this.getAllActivities();
         float sumDistance = 0;
 
@@ -62,7 +90,7 @@ public class BikeComponentUsageService {
     }
 
 
-    private void saveAndCalculateDistance(BikeComponent bikeComponent, Use newUse) {
+    private void saveAndCalculateDistance(BikeComponent bikeComponent, ComponentUsage newUse) {
         newUse.setDistance(this.getActiviesDistance(newUse));
         bikeComponent.addUse(newUse);
 

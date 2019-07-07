@@ -15,7 +15,7 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Use {
+public class ComponentUsage {
 
     @Id
     @GeneratedValue(generator="increment")
@@ -33,12 +33,12 @@ public class Use {
     private ZonedDateTime disassemblyDate;
 
 
-    public Use(ZonedDateTime assemblyDate, ZonedDateTime disassemblyDate){
+    public ComponentUsage(ZonedDateTime assemblyDate, ZonedDateTime disassemblyDate){
         this(assemblyDate);
         this.disassemblyDate = disassemblyDate;
     }
 
-    public Use(ZonedDateTime assemblyDate){
+    public ComponentUsage(ZonedDateTime assemblyDate){
         this.assemblyDate = assemblyDate;
     }
 
