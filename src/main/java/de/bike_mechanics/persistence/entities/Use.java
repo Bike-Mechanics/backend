@@ -41,4 +41,8 @@ public class Use {
     public Use(ZonedDateTime assemblyDate){
         this.assemblyDate = assemblyDate;
     }
+
+    public void setBikeComponent(BikeComponent bikeComponent) {
+
+    }
 }
