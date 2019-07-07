@@ -7,6 +7,7 @@
 .idea/dictionaries
 backend.iml
 .idea/
+**/*.iml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
@@ -20,6 +21,13 @@ bike_mechanics_backend.iml
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
+/target
+/**/target
+/.settings
+.classpath
+.project
+.idea
+*.iml
 
 # CMake
 cmake-build-debug/
