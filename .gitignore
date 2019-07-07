@@ -7,6 +7,7 @@
 .idea/dictionaries
 backend.iml
 .idea/
+**/*.iml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
